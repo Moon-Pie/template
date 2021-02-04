@@ -14,7 +14,7 @@ void find_g(int u,int fa) {
 		if(siz[v] > S/2) ok=0;
 	}
 	if(S-siz[u] > S/2) ok=0;
-	if(ok) root=u;
+	if(ok) root=u;  
 }
 
 struct tr_arr
