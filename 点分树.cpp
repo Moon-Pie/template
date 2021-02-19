@@ -14,7 +14,7 @@ void find_g(int u,int fa) {
 		if(siz[v] > S/2) ok=0;
 	}
 	if(S-siz[u] > S/2) ok=0;
-	if(ok) root=u;  
+	if(ok) root=u;
 }
 
 struct tr_arr
@@ -39,8 +39,8 @@ struct tr_arr
 }tr[N];
 
 void get_chain(int u,int fa,int len,int ori,int fro) {
-	tr[ori].addn(len,w[u],0);
-	tr[fro].addn(len,w[u],1);
+	tr[ori].addn(len,w[u],0);  // ori -> u
+	tr[fro].addn(len,w[u],1);  // fro -> root
 	dis[u][dep[ori]] = len;
 	for(int i=head[u];i;i=nxt[i]) {
 		int v=pnt[i]; if(v==fa || vis[v]) continue;
@@ -60,6 +60,7 @@ void pdiv(int u) {
 		far[root]=u;
 		dep[root]=dep[u]+1;
 	}
+	find_g(u,0);
 	for(int i=head[u];i;i=nxt[i]) {
 		int v=pnt[i]; if(vis[v]) continue;
 		S = siz[v]; find_g(v,u);		
